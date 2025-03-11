@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import TimeValue from "../components/TimeValue";
+import { Fade } from "react-awesome-reveal";
+import SwiperComponent from "./SwiperComponent";
 
 export default function Time() {
     const [timeTogether, setTimeTogether] = useState({ months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -50,7 +52,7 @@ export default function Time() {
             const minutes = Math.floor(diff / (1000 * 60)) % 60;
             const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
             const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30; // Máximo 30 días
-            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)); // Promedio de días en un mes
+            let months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)); // Promedio de días en un mes
 
             const totalSeconds = Math.floor(diff / 1000);
             const totalMinutes = Math.floor(diff / (1000 * 60));
@@ -73,35 +75,31 @@ export default function Time() {
     }, []);
 
     return (
-        <section className="bg-[url('../assets/bg1.png')] bg-auto bg-fixed shadow-lg p-6 w-full z-10 w-full h-screen p-6 flex flex-col justify-center items-center font-light">
+        // bg-[url('../assets/bg1.jpg')]
+        <section className=" bg-cover p-6 w-full z-10 w-full p-6 py-32 pb-12 min-h-[70vh] flex flex-col justify-end items-center font-light ">
             <div className="max-w-xl flex flex-col gap-2 ">
-                <h2 className="text-2xl text-pink-700">Katherine</h2>
-                <h3 className="text-xl">Cada momento contigo es un regalo y cada día a tu lado es un capítulo que quiero seguir escribiendo.</h3>
-                {/* <div className="flex flex-col mt-4 space-y-2 text-gray-700 items-start">
-                <TimeValue value={timeTogetherAlt.months}> meses llenos de risas, amor y aventuras.</TimeValue>
-                <TimeValue value={timeTogetherAlt.days}> días, cada uno más especial que el anterior.</TimeValue>
-                <TimeValue value={timeTogetherAlt.hours}> horas, llenas de complicidad y cariño.</TimeValue>
-                <TimeValue value={timeTogetherAlt.minutes}> minutos, que han pasado volando, pero siempre con el corazón lleno.</TimeValue>
-                <TimeValue value={timeTogetherAlt.seconds}> segundos, que me han recordado lo afortunado/a que soy de tenerte en mi vida.</TimeValue>
-            </div> */}
-                <div>
-                    Que rapido pasa el tiempo cuando se es feliz no?, ya <span className="text-pink-600">{timeTogetherAlt.months}</span> meses en los que esta vida me ha permitido tener al tesoro mas bello .
-                    <span className="text-pink-600"> {timeTogetherAlt.days}</span> días, junto a la mujer mas especial del mundo.
-                    <span className="text-pink-600"> {timeTogetherAlt.hours}</span> horas que se han llenado de recuerdos y cariño.
-                    <span className="text-pink-600"> {timeTogetherAlt.minutes}</span> minutos que, lejos de ti, parecen eternos, pero junto a ti son fugaces.
-                    <span className="text-pink-600"> {timeTogetherAlt.seconds}</span> segundos en los que agradezco con todo mi ser que el universo me haya dado el regalo de conocerte.
-                </div>
-                <div>
-                    Amotito mio, te amo con todo mi ser, con cada fibra de mi existencia, con cada latido de mi corazón. y no hay un solo segundo en el que no agradezca a la vida por haberte puesto en mi camino.
-                    
-                </div>
-                <div>
-                    Bendito sea el dia en que pude conocerte.
-                </div>
-                {/* <p className="text-xl mt-4 text-gray-700">
-                    Llevamos juntos {timeTogether.months} meses, {timeTogether.days} días, {timeTogether.hours} horas, {timeTogether.minutes} minutos y {timeTogether.seconds} segundos.
-                </p> */}
+                <Fade cascade duration={1000} triggerOnce>
+                    <h2 className="text-2xl text-pink-700">
+                        Katherine
+                    </h2>
+                    <h3 className="text-xl md:text-3xl">
+                        Cada momento contigo es un regalo y cada día a tu lado es un capítulo que quiero seguir escribiendo.
+                    </h3>
+                    <div className="md:text-xl">
+                        Que rapido pasa el tiempo cuando se es feliz no?, ya <span className="text-pink-600">{timeTogetherAlt.months}</span> meses en los que esta vida me ha permitido tener al tesoro mas bello .
+                        <span className="text-pink-600"> {timeTogetherAlt.days}</span> días, junto a la mujer mas especial del mundo.
+                        <span className="text-pink-600"> {timeTogetherAlt.hours}</span> horas que se han llenado de recuerdos y cariño.
+                        <span className="text-pink-600"> {timeTogetherAlt.minutes}</span> minutos que, lejos de ti, parecen eternos, pero junto a ti son fugaces.
+                        <span className="text-pink-600"> {timeTogetherAlt.seconds}</span> segundos en los que agradezco con todo mi ser que el universo me haya dado el regalo de conocerte.
+                    </div>
+                    <div className="md:text-xl">
+                        Amotito mio, te amo con todo mi ser, con cada fibra de mi existencia, con cada latido de mi corazón. y no hay un solo segundo en el que no agradezca a la vida por haberte puesto en mi camino.
+                    </div>
+                    <div className="md:text-xl">
+                        Bendito sea el dia en que pude conocerte.
+                    </div>
+                </Fade>
             </div>
 
-        </section>)
+        </section >)
 }

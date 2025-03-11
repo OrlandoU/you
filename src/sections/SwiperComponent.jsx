@@ -1,26 +1,9 @@
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import Slider from "../components/Slider";
 
-// Import Swiper styles
-import 'swiper/css';
-import ButtonSlide from '../components/NextSlide';
-
-export default () => {
+export default function SwiperComponent() {
   return (
-    <div className='z-10 bg-white'>
-      <Swiper
-      spaceBetween={50}
-      slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      ...
-      <ButtonSlide />
-      
-    </Swiper>
-    </div>
+    <section className='w-full p-6 overflow-hidden'>
+      <Slider />
+    </section>
   );
 };

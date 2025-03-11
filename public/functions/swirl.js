@@ -16,7 +16,7 @@ const noiseSteps = 8;
 const xOff = 0.00125;
 const yOff = 0.00125;
 const zOff = 0.0005;
-const backgroundColor = 'rgb(62, 0, 119)';
+const backgroundColor = 'rgba(62, 0, 119, 0.83)';
 
 let container;
 let canvas;

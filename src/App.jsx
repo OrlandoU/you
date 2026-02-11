@@ -10,11 +10,9 @@ function App() {
 
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-
-
   // Countdown to a specific event
   useEffect(() => {
-    const eventDate = new Date("2025-04-28"); // Change to your event date
+    const eventDate = new Date("2026-04-28"); // Change to your event date
     const calculateCountdown = () => {
       const now = new Date();
       const diff = eventDate - now;
@@ -46,8 +44,6 @@ function App() {
 
       <div className="min-h-screen flex flex-col">
         <Header />
-
-
           <div className="bg-white z-11 relative shadow-2xl shadow-indigo-50">
           <Time />
           <Reasons />

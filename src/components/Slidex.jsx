@@ -1,4 +1,4 @@
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import 'swiper/css';
 import 'swiper/css/effect-cards';
@@ -20,7 +20,6 @@ export default function Slidex({source, isActive}) {
             refVideo.current.muted = true;
             refVideo.current.volume = 0.1;
         }
-
         
     }}, [isActive, inView]);
 

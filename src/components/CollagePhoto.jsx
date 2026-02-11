@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 export default function CollagePhoto({source, index}) {
     const [className, setClassName] = useState("");
 
-    const [ref, inView, entry] = useInView({
+    const [ref, inView] = useInView({
         threshold: 1,
     });
 

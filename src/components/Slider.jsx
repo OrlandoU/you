@@ -1,12 +1,11 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards, EffectCoverflow } from 'swiper/modules';
+import { EffectCoverflow } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import 'swiper/css/effect-coverflow';
 import Slidex from './Slidex';
-import { Fade } from 'react-awesome-reveal';
 
 export default function Slider() {
   const sources = [

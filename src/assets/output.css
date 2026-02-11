@@ -579,6 +579,14 @@ video {
   }
 }
 
+.visible {
+  visibility: visible;
+}
+
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -615,6 +623,10 @@ video {
   margin: auto;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -647,8 +659,28 @@ video {
   max-width: 80rem;
 }
 
+.max-w-sm {
+  max-width: 24rem;
+}
+
 .max-w-xl {
   max-width: 36rem;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
 }
 
 .flex-col {
@@ -757,6 +789,11 @@ video {
   line-height: 2.25rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -851,6 +888,14 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.transition {
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-500 {
   transition-duration: 500ms;
 }
@@ -861,6 +906,380 @@ video {
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+  --bg-color: #fff5f7;
+  --envelope-color: #ffb7c5;
+  --envelope-dark: #ff8fa3;
+  --paper-color: #ffffff;
+  --text-color: #4a3b3b;
+  --accent-color: #ff4d6d;
+  --shadow: rgba(255, 77, 109, 0.2);
+  --heart-white: #ffffff;
+}
+
+.valentine-body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--bg-color);
+  background-image: radial-gradient(var(--shadow) 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+}
+
+@keyframes idleFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+.envelope-container {
+  position: fixed;
+  /* 100vh = full height. Subtracting 150px keeps it near the bottom */
+  top: calc(100vh - 180px);
+  /* 100vw = full width. Subtracting 250px keeps it near the right */
+  left: calc(100vw - 260px);
+  cursor: pointer;
+  z-index: 100;
+  perspective: 1500px;
+  /* Essential: ensures top/left/transform all animate smoothly */
+  transition: all 1.2s cubic-bezier(0.6, 0.05, 0.2, 1);
+  animation: idleFloat 4s ease-in-out infinite;
+}
+
+.envelope-container.open {
+  top: 50vh;
+  left: 50vw;
+  /* Centering adjustment */
+  transform: translate(-50%, -50%);
+  animation: none;
+  cursor: default;
+}
+
+.envelope {
+  position: relative;
+  width: 220px;
+  height: 140px;
+  background-color: var(--envelope-color);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.envelope::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  width: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 70px solid var(--envelope-color);
+  bottom: 0;
+  border-radius: 0 0 8px 8px;
+}
+
+.envelope::before {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  width: 0;
+  height: 0;
+  border-top: 70px solid transparent;
+  border-bottom: 70px solid transparent;
+  border-left: 110px solid var(--envelope-dark);
+  top: 0;
+  opacity: 0.3;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-top: 80px solid var(--envelope-dark);
+  transform-origin: top;
+  transition: transform 0.6s ease 1s;
+  z-index: 4;
+}
+
+.envelope-container.open .flap {
+  transform: rotateX(180deg);
+}
+
+.heart-seal {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  transition: 0.4s ease 1s;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.envelope-container.open .heart-seal {
+  opacity: 0;
+}
+
+.white-heart {
+  background-color: var(--heart-white);
+  display: inline-block;
+  height: 25px;
+  position: relative;
+  transform: rotate(-45deg);
+  width: 25px;
+  border-radius: 2px;
+}
+
+.white-heart:before, .white-heart:after {
+  content: "";
+  background-color: var(--heart-white);
+  border-radius: 50%;
+  height: 25px;
+  position: absolute;
+  width: 25px;
+}
+
+.white-heart:before {
+  top: -12.5px;
+  left: 0;
+}
+
+.white-heart:after {
+  left: 12.5px;
+  top: 0;
+}
+
+.letter {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 200px;
+  height: 120px;
+  background: var(--paper-color);
+  padding: 20px;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1) 1.5s;
+  z-index: 2;
+  opacity: 0;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.337);
+  border-radius: 4px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.envelope-container.open .letter {
+  opacity: 1;
+  width: 450px;
+  height: 650px;
+  left: -115px;
+  bottom: -220px;
+  z-index: 10;
+  padding: 50px 40px;
+}
+
+.media-slot {
+  display: block;
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 1s ease;
+  background: #fff;
+  padding: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  margin: 15px auto;
+  position: relative;
+}
+
+.media-slot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slot-1 {
+  float: left;
+  width: 160px;
+  margin-right: 15px;
+  transform: rotate(-5deg) scale(0.8);
+}
+
+.slot-2 {
+  float: right;
+  width: 170px;
+  margin-left: 15px;
+  transform: rotate(4deg) scale(0.8);
+}
+
+.slot-3 {
+  clear: both;
+  width: 90%;
+  height: 60%;
+  transform: rotate(-2deg) scale(0.8);
+  margin: 25px auto;
+}
+
+.slot-4 {
+  float: left;
+  width: 150px;
+  margin-right: 15px;
+  transform: rotate(3deg) scale(0.8);
+}
+
+.slot-5 {
+  float: right;
+  width: 190px;
+  margin-left: 15px;
+  transform: rotate(-4deg) scale(0.8);
+}
+
+.media-slot.visible {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.message-text {
+  font-size: 1.25rem;
+  color: var(--text-color);
+  line-height: 1.9;
+  font-style: italic;
+}
+
+.word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(10px);
+  transition: all 0.6s;
+  margin-right: 4px;
+}
+
+.word.visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+  .envelope-container.open .letter {
+    width: 90vw;
+    height: 80vh;
+    left: -110px;
+    bottom: -250px;
+  }
+
+  .media-slot {
+    float: none !important;
+    width: 95% !important;
+    margin: 15px auto !important;
+  }
+}
+
+.letter::-webkit-scrollbar {
+  width: 5px;
+}
+
+.letter::-webkit-scrollbar-thumb {
+  background: var(--envelope-color);
+  border-radius: 10px;
+}
+
+/* 1. Center the container properly when open */
+
+.envelope-container.open {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  /* Reset the original right: 50px */
+  bottom: auto;
+  /* Reset the original bottom: 50px */
+  transform: translate(-50%, -50%);
+  animation: none;
+  cursor: default;
+}
+
+/* 2. Anchor the letter to the center of the envelope */
+
+.letter {
+  position: absolute;
+  /* Instead of bottom/left 10px, we center it */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 120px;
+  background: var(--paper-color);
+  padding: 20px;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1) 1.5s;
+  z-index: 2;
+  opacity: 0;
+  box-shadow: 0 0 50px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* 3. Expand the letter while maintaining the center anchor */
+
+.envelope-container.open .letter {
+  opacity: 1;
+  width: 450px;
+  height: 650px;
+  /* Keep the transform translate to stay perfectly centered */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 50px 40px;
+}
+
+.envelope-container ~ div::after{
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000000;
+  position: fixed;
+  z-index: -10;
+  offset:0;
+  transition: all 1s ease-in-out;
+}
+
+.envelope-container.open ~ div::after{
+  background-color: #00000054;
+  z-index: 10;
+}
+
+/* 4. Mobile: Full screen expansion */
+
+@media (max-width: 500px) {
+  .envelope-container.open .letter {
+    width: 100vw;
+    height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0;
+    padding: 40px 20px;
+  }
+
+  .media-slot {
+    float: none !important;
+    width: 100% !important;
+    margin: 15px auto !important;
+    transform: rotate(0deg) scale(1) !important;
+  }
 }
 
 @media (min-width: 640px) {
@@ -896,5 +1315,11 @@ video {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:max-w-xl {
+    max-width: 36rem;
   }
 }

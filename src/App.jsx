@@ -5,9 +5,10 @@ import SwiperComponent from "./sections/SwiperComponent";
 import { Fade } from "react-awesome-reveal";
 import Collage from "./sections/Collage";
 import Reasons from "./sections/Reasons";
+import ValentineLetter from "./sections/Valentine";
 
 function App() {
-
+  const [loading, setLoading] = useState(true);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   // Countdown to a specific event
@@ -34,10 +35,43 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleFullyLoaded = () => {
+      // Small timeout to ensure smooth transition
+      setTimeout(() => setLoading(false), 500);
+    };
+
+    if (document.readyState === "complete") {
+      handleFullyLoaded();
+    } else {
+      window.addEventListener("load", handleFullyLoaded);
+      return () => window.removeEventListener("load", handleFullyLoaded);
+    }
+  }, []);
+
   return (
     <div className="App">
+      {loading && <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#fff5f7",
+            zIndex: 10000, // Higher than everything
+            fontFamily: "Georgia, serif",
+          }}
+        >
+          <div className="animate-bounce mb-4 text-4xl">❤️</div>
+          <p className="text-2xl text-pink-600">Cargando nuestra historia...</p>
+        </div>}
+      <ValentineLetter />
       <Fade duration={10000} triggerOnce>
-
         <div className="content--canvas z-0">
         </div>
       </Fade>

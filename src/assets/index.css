@@ -3,7 +3,21 @@ body {
   font-family: "Caveat", serif;;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  background-image: radial-gradient(var(--shadow) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
+
+:root {
+            --bg-color: #fff5f7;
+            --envelope-color: #ffb7c5;
+            --envelope-dark: #ff8fa3;
+            --paper-color: #ffffff;
+            --text-color: #4a3b3b;
+            --accent-color: #ff4d6d;
+            --shadow: rgba(255, 77, 109, 0.2);
+            --heart-white: #ffffff;
+        }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

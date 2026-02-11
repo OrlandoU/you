@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import TimeValue from "../components/TimeValue";
 import { Fade } from "react-awesome-reveal";
-import SwiperComponent from "./SwiperComponent";
 
 export default function Time() {
-    const [timeTogether, setTimeTogether] = useState({ months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
+    //const [timeTogether, setTimeTogether] = useState({ months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [timeTogetherAlt, setTimeTogetherAlt] = useState({ months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     // Calculate time together since a specific date
@@ -48,26 +46,26 @@ export default function Time() {
             const diff = now - startDate; // Diferencia en milisegundos
 
             // Cálculos de tiempo
-            const seconds = Math.floor(diff / 1000) % 60;
-            const minutes = Math.floor(diff / (1000 * 60)) % 60;
-            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30; // Máximo 30 días
-            let months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)); // Promedio de días en un mes
+           // const seconds = Math.floor(diff / 1000) % 60;
+            //const minutes = Math.floor(diff / (1000 * 60)) % 60;
+            //const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            //const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30; // Máximo 30 días
+            //let months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)); // Promedio de días en un mes
 
             const totalSeconds = Math.floor(diff / 1000);
             const totalMinutes = Math.floor(diff / (1000 * 60));
             const totalHours = Math.floor(diff / (1000 * 60 * 60));
             const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-            const years = now.getFullYear() - startDate.getFullYear();
+            //const years = now.getFullYear() - startDate.getFullYear();
             const totalMonths = getMonthsBetween(startDate, now, false);
             // Ajustamos si no hemos llegado al día exacto del mes
             if (now.getDate() < startDate.getDate()) {
-                months--;
+                //months--;
             }
 
             setTimeTogetherAlt({ months: totalMonths, days: totalDays, hours: totalHours, minutes: totalMinutes, seconds: totalSeconds });
-            setTimeTogether({ months, days, hours, minutes, seconds });
+            //setTimeTogether({ months, days, hours, minutes, seconds });
         };
 
         const interval = setInterval(calculateTimeTogether, 1000);

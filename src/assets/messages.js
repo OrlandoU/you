@@ -1,4 +1,4 @@
-export default [
+const messages = [
     "Te amo por cómo iluminas mi mundo con tu sola existencia", 1000,
     "Te amo por enseñarme cada día lo bella que es la vida cuando amas alguien", 1000,
     "Te amo por cómo tu sonrisa llena mi corazón de alegría y mi alma de vida", 1000,
@@ -201,3 +201,4 @@ export default [
     "Te amo por construir juntos un mundo lleno de amor"
   ]
   
+  export default messages;

@@ -16,12 +16,12 @@ export default function Slidex({source, isActive}) {
         if(refVideo.current && isActive && inView){
             refVideo.current.muted = false;
             refVideo.current.volume = 0.1;
-        } else if(refVideo.current && (!isActive || !inView)){ {
+        } else if(refVideo.current && (!isActive || !inView)) {
             refVideo.current.muted = true;
             refVideo.current.volume = 0.1;
         }
         
-    }}, [isActive, inView]);
+    }, [isActive, inView]);
 
     useEffect(() => {
         if(isActive){
